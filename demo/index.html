@@ -17,15 +17,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <link rel="import" href="../measure-bar.html">
   </head>
   <body unresolved>
-
+    <style>
+      .col-md-3{
+        width: 75%;
+      }
+    </style>
     <p>An example of <code>&lt;measure-bar&gt;</code>:</p>
 
     <button>Say Something</button>
     <div class ='col-md-3'>
-      <measure-bar author='{"name": "Lord Meowser", "image": "http://placekitten.com/g/200/300"}' fancy>
-        <h2>Hello measure-bar</h2>
+      <measure-bar>
+        <measure-pin value='30' name = 'Ernqiue' color = 'purple'></measure-pin>
       </measure-bar>
-    <div>
+    </div>
     <script>
       document.querySelector('button').addEventListener('click', function() {
         alert(document.querySelector('measure-bar').sayHello('Hallo!'));

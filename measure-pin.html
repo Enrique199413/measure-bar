@@ -1,0 +1,174 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+An element providing a solution to no problem in particular.
+
+Example:
+
+    <measure-pin></measure-pin>
+
+@group Seed Elements
+@element measure-pin
+@demo demo/index.html
+@hero hero.svg
+-->
+<dom-module id="measure-pin">
+
+  <style>
+    :host {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      margin:0;
+      padding: 0;
+    }
+
+    ::shadow .marked{
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      background-color: red;
+      margin-top: 15px;
+      -webkit-border-radius: 50% 50%;
+      border-radius: 50% 50%;
+      transition: all 0.5s ease;
+    }
+    ::shadow .marked:hover{
+      -webkit-border-radius: 50% 50% 50% 0;
+      border-radius: 50% 50% 50% 0;
+      -webkit-transform: rotate(135deg);
+      -moz-transform: rotate(135deg);
+      -o-transform: rotate(135deg);
+      -ms-transform: rotate(135deg);
+      transform: rotate(135deg);
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      background-color: red;
+      margin-top: 15px;
+      margin-left: -4px;
+      transition: all 0.5s ease;
+    }
+    ::shadow .author{
+      transition: all 0.5s ease;
+      position: absolute;
+      margin-top: 30px;
+      transition: all 0.5s ease;
+      z-index: 1;
+      border: 1px solid gray;
+      padding: 4px;
+      margin-left: 5px;
+      background-color: white;
+    }
+  </style>
+
+  <template>
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'measure-pin',
+
+    properties: {
+      value: Number,
+      name: String,
+      color: String
+    },
+
+    // Element Lifecycle
+
+    ready: function() {
+      console.log('HIII',this.root);
+      // `ready` is called after all elements have been configured, but
+      // propagates bottom-up. This element's children are ready, but parents
+      // are not.
+      //
+      // This is the point where you should make modifications to the DOM (when
+      // necessary), or kick off any processes the element wants to perform.
+      var pin = document.createElement('div'),
+        name = document.createElement('div')
+        container = document.createElement('div'),
+        that = this;
+      name.appendChild(document.createTextNode(this.name));
+      console.log(this.value);
+      name.className = 'author';
+      name.style.position = 'absolute';
+      name.style.left = (that.value + 1).toString().concat('%');
+      name.style.display = 'none';
+
+      pin.className = 'marked';
+      pin.style.position = 'absolute';
+      pin.style.left = (that.value + 1).value.toString().concat('%');
+      pin.style.backgroundColor = this.color;
+
+      container.appendChild(pin);
+      container.appendChild(name);
+
+      pin.addEventListener('mouseenter', function (e) {
+        name.style.display = 'inline';
+      });
+      pin.addEventListener('mouseout', function (e) {
+        name.style.display = 'none';
+      });
+      Polymer.dom(this.root).appendChild(container);
+    },
+
+    attached: function() {
+
+      // `attached` fires once the element and its parents have been inserted
+      // into a document.
+      //
+      // This is a good place to perform any work related to your element's
+      // visual state or active behavior (measuring sizes, beginning animations,
+      // loading resources, etc).
+    },
+
+    detached: function() {
+      // The analog to `attached`, `detached` fires when the element has been
+      // removed from a document.
+      //
+      // Use this to clean up anything you did in `attached`.
+    },
+
+    // Element Behavior
+
+    /**
+     * The `measure-pin-lasers` event is fired whenever `fireLasers` is called.
+     *
+     * @event measure-pin-lasers
+     * @detail {{sound: String}}
+     */
+
+    /**
+     * Sometimes it's just nice to say hi.
+     *
+     * @param {string} greeting A positive greeting.
+     * @return {string} The full greeting.
+     */
+
+    /**
+     * Attempts to destroy this element's enemies with an any beam of light!
+     *
+     * Or, at least, dispatches an event in the vain hope that someone else will
+     * do the zapping.
+     */
+    fireLasers: function() {
+      this.fire('measure-pin-lasers', {sound: 'Pew pew!'});
+    }
+
+  });
+
+</script>
