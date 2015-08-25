@@ -14,32 +14,110 @@ An element providing a solution to no problem in particular.
 
 Example:
 
-    <rule-view></rule-view>
+    <measure-bar></measure-bar>
 
 @group Seed Elements
-@element rule-view
+@element measure-bar
 @demo demo/index.html
 @hero hero.svg
 -->
-<dom-module id="rule-view">
+<dom-module id="measure-bar">
 
   <style>
     :host {
       display: block;
       box-sizing: border-box;
+      margin:0;
+      padding: 0;
     }
-
+    ::shadow .pin {
+      position: absolute;
+      font-size: 8pt;
+    }
+    ::shadow .selected {
+      display: block;
+    }
+    ::shadow .container {
+      padding: 0;
+      margin: 0;
+    }
+    ::shadow .large {
+      border-left: 1px solid #777777;
+      height: 14px;
+      margin-top: -14px;
+      width: 13px;
+    }
+    ::shadow .tries {
+      position: relative;
+    }
+    ::shadow .top {
+      width: 100%;
+      height: 20px;
+    }
     .author img {
       float: left;
       margin-right: 5px;
       max-height: 100px;
       max-width: 100px;
     }
+    .span {
+      font-size: 7pt;
+      color:red;
+    }
+    ::shadow .hyper{
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      -webkit-border-radius: 50% 50% 50% 0;
+      border-radius: 50% 50% 50% 0;
+      background: black;
+      top: -21px;
+      left: -11px;
+      -webkit-transform: rotate(-45deg);
+      -moz-transform: rotate(-45deg);
+      -o-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+      font-size: 12pt;
+    }
+    ::shadow .hidden{
+      display: none;
+    }
+    ::shadow .text{
+      position: absolute;
+      top: -21px;
+      left: -11px;
+      z-index: 1;
+      margin-left: 3px;
+      margin-top: 4px;
+      color: white;
+    }
+    .rule {
+      width: 100%;
+      height: 10px;
+      background: rgb(255,43,43);
+      background: -moz-linear-gradient(left, rgba(255,43,43,1) 0%, rgba(245,255,66,1) 50%, rgba(71,170,44,1) 100%);
+      background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,43,43,1)), color-stop(50%,rgba(245,255,66,1)), color-stop(100%,rgba(71,170,44,1)));
+      background: -webkit-linear-gradient(left, rgba(255,43,43,1) 0%,rgba(245,255,66,1) 50%,rgba(71,170,44,1) 100%);
+      background: -o-linear-gradient(left, rgba(255,43,43,1) 0%,rgba(245,255,66,1) 50%,rgba(71,170,44,1) 100%);
+      background: -ms-linear-gradient(left, rgba(255,43,43,1) 0%,rgba(245,255,66,1) 50%,rgba(71,170,44,1) 100%);
+      background: linear-gradient(to right, rgba(255,43,43,1) 0%,rgba(245,255,66,1) 50%,rgba(71,170,44,1) 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff2b2b', endColorstr='#47aa2c',GradientType=1 );
+    }
+    .rule::after{
+
+    }
   </style>
 
   <template>
-    <h1>&lt;rule-view&gt;</h1>
+    <h1>&lt;measure-bar&gt;</h1>
     <content></content>
+    <div class = 'container'>
+      <div class="top"></div>
+      <div class="rule"></div>
+      <div class="tries"></div>
+      <div class="bottom"></div>
+    </div>
     <p class="author">
       <img src="{{author.image}}">
       Cheers,<br/>
@@ -53,7 +131,7 @@ Example:
 
   Polymer({
 
-    is: 'rule-view',
+    is: 'measure-bar',
 
     properties: {
 
@@ -99,6 +177,33 @@ Example:
       //
       // This is the point where you should make modifications to the DOM (when
       // necessary), or kick off any processes the element wants to perform.
+      var rule = document.querySelector('div.rule'),
+        tries = document.querySelector('div.tries'),
+        top = document.querySelector('div.top'),
+        measures,
+        i = 0;
+
+      for(i; i <= 100 ; i = i + 1) {
+        var span = '<span class = "pin" style="left:' + i.toString().concat("%") + '">' + i + '</span>';
+
+        span = '<span class = "pin large" style="left:' + i.toString().concat("%") + '"></span>';
+        tries.innerHTML += span;
+      }
+      measures = document.querySelector('.tries');
+      for (var i = 0; i < measures.childNodes.length; i++) {
+          measures.childNodes[i].addEventListener("mouseenter", function (e) {
+            this.innerHTML = '<div><span class="text">' + this.style.left.split('%')[0] + '</span><span class="hyper"></span></div>';
+            //this.classList.toggle('selected');
+            console.log(this.childNodes);
+
+          });
+          measures.childNodes[i].addEventListener("mouseout", function (e) {
+            this.innerHTML = '<span class="hidden">' + this.style.left.split('%')[0] + '</span>';
+            this.classList.toggle('selected');
+            console.log('YASE SALIO', this.childNodes);
+
+          });
+      }
     },
 
     attached: function() {
@@ -120,9 +225,9 @@ Example:
     // Element Behavior
 
     /**
-     * The `rule-view-lasers` event is fired whenever `fireLasers` is called.
+     * The `measure-bar-lasers` event is fired whenever `fireLasers` is called.
      *
-     * @event rule-view-lasers
+     * @event measure-bar-lasers
      * @detail {{sound: String}}
      */
 
@@ -134,7 +239,7 @@ Example:
      */
     sayHello: function(greeting) {
       var response = greeting || 'Hello World!';
-      return 'rule-view says, ' + response;
+      return 'measure-bar says, ' + response;
     },
 
     /**
@@ -144,7 +249,7 @@ Example:
      * do the zapping.
      */
     fireLasers: function() {
-      this.fire('rule-view-lasers', {sound: 'Pew pew!'});
+      this.fire('measure-bar-lasers', {sound: 'Pew pew!'});
     }
 
   });

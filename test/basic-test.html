@@ -17,17 +17,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <script src="../../web-component-tester/browser.js"></script>
 
     <!-- Step 1: import the element to test -->
-    <link rel="import" href="../rule-view.html">
+    <link rel="import" href="../measure-bar.html">
   </head>
   <body>
 
     <!-- You can use the document as a place to set up your fixtures. -->
-    <rule-view></rule-view>
+    <measure-bar></measure-bar>
 
     <script>
-      var myEl = document.querySelector('rule-view');
+      var myEl = document.querySelector('measure-bar');
 
-      suite('<rule-view>', function() {
+      suite('<measure-bar>', function() {
 
         test('defines the "author" property', function() {
           assert.equal(myEl.author.name, 'Dimitri Glazkov');
@@ -35,14 +35,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         });
 
         test('says hello', function() {
-          assert.equal(myEl.sayHello(), 'rule-view says, Hello World!');
+          assert.equal(myEl.sayHello(), 'measure-bar says, Hello World!');
 
           var greetings = myEl.sayHello('greetings Earthlings');
-          assert.equal(greetings, 'rule-view says, greetings Earthlings');
+          assert.equal(greetings, 'measure-bar says, greetings Earthlings');
         });
 
         test('fires lasers', function(done) {
-          myEl.addEventListener('rule-view-lasers', function(event) {
+          myEl.addEventListener('measure-bar-lasers', function(event) {
             assert.equal(event.detail.sound, 'Pew pew!');
             done();
           });
