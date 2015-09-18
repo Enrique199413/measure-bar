@@ -29,33 +29,114 @@ Example:
       width: 100%;
       box-sizing: border-box;
       margin:0;
+      position: absolute;
       padding: 0;
     }
 
+    ::shadow .contenedor-monitos {
+      height: 30px;
+      width: 30px;
+    }
+    ::shadow .contenedor-monitos:hover{
+      -webkit-transform: rotate(360deg);
+      -moz-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+      transform: rotate(360deg);
+      transition: all 0.5s ease;
+    }
+    ::shadow .mon:before {
+      width: 20px;
+      border-radius: 5px;
+      height: 2px;
+      background-color: black;
+      content: '';
+      margin-left: -5px;
+      margin-top: 4px;
+      position: absolute;
+    }
+    ::shadow .mon{
+      width: 10px;
+      height: 10px;
+      background-color: black;
+      -webkit-border-radius: 50% 50%;
+      border-radius: 50% 50%;
+      transition: all 0.5s ease;
+    }
+
+    ::shadow .mon:nth-child(1){
+      width: 10px;
+      height: 10px;
+      margin-left: 10px;
+      background-color: black;
+      -webkit-border-radius: 50% 50%;
+      border-radius: 50% 50%;
+      transition: all 0.5s ease;
+    }
+    ::shadow .mon:nth-child(2){
+      width: 10px;
+      transform: rotate(90deg);
+      height: 10px;
+      margin-left: 20px;
+      background-color: black;
+      -webkit-border-radius: 50% 50%;
+      border-radius: 50% 50%;
+      transition: all 0.5s ease;
+    }
+    ::shadow .mon:nth-child(3){
+      width: 10px;
+      height: 10px;
+      margin-left: 10px;
+      background-color: black;
+      -webkit-border-radius: 50% 50%;
+      border-radius: 50% 50%;
+      transform: rotate(180deg);
+      transition: all 0.5s ease;
+    }
+    ::shadow .mon:nth-child(4){
+      width: 10px;
+      transform: rotate(270deg);
+      height: 10px;
+      margin-top: -20px;
+      background-color: black;
+      -webkit-border-radius: 50% 50%;
+      border-radius: 50% 50%;
+      transition: all 0.5s ease;
+    }
+    ::shadow .marked:before {
+      width: 19px;
+      border-radius: 3px;
+      height: 3px;
+      background-color: black;
+      position: absolute;
+      content: '';
+      margin-left: -5px;
+      margin-top: 3px;
+    }
     ::shadow .marked{
       width: 10px;
       height: 10px;
       position: absolute;
-      background-color: red;
+      background-color: black;
       margin-top: 15px;
       -webkit-border-radius: 50% 50%;
       border-radius: 50% 50%;
       transition: all 0.5s ease;
     }
+    ::shadow .oculto {
+      opacity: 0;
+    }
     ::shadow .marked:hover{
-      -webkit-border-radius: 50% 50% 50% 0;
-      border-radius: 50% 50% 50% 0;
-      -webkit-transform: rotate(135deg);
-      -moz-transform: rotate(135deg);
-      -o-transform: rotate(135deg);
-      -ms-transform: rotate(135deg);
-      transform: rotate(135deg);
-      width: 20px;
-      height: 20px;
+      -webkit-transform: rotate(360deg);
+      -moz-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+      transform: rotate(360deg);
+      width: 10px;
+      height: 10px;
       position: absolute;
       background-color: red;
       margin-top: 15px;
-      margin-left: -4px;
       transition: all 0.5s ease;
     }
     ::shadow .author{
@@ -72,6 +153,7 @@ Example:
   </style>
 
   <template>
+    <content></content>
   </template>
 
 </dom-module>
@@ -85,13 +167,14 @@ Example:
     properties: {
       value: Number,
       name: String,
-      color: String
+      color: String,
+      top: Number,
+      notify: true
     },
 
     // Element Lifecycle
 
     ready: function() {
-      console.log('HIII',this.root);
       // `ready` is called after all elements have been configured, but
       // propagates bottom-up. This element's children are ready, but parents
       // are not.
@@ -101,22 +184,30 @@ Example:
       var pin = document.createElement('div'),
         name = document.createElement('div')
         container = document.createElement('div'),
-        that = this;
-      name.appendChild(document.createTextNode(this.name));
-      console.log(this.value);
+        contenedor = Polymer.dom(this);
+        that = this,
+        moreOne = document.createElement('div');
+
+
+
+      name.appendChild(document.createTextNode(this.name.concat(' - ').concat((this.value).toString())));
+
       name.className = 'author';
       name.style.position = 'absolute';
-      name.style.left = (that.value + 1).toString().concat('%');
+      name.style.left = (this.value + 2).toString().concat('%');
       name.style.display = 'none';
 
-      pin.className = 'marked';
+      pin.classList.add('marked', 'oculto');
       pin.style.position = 'absolute';
-      pin.style.left = (that.value + 1).value.toString().concat('%');
-      pin.style.backgroundColor = this.color;
+      if (this.top > 0) {
+        pin.style.marginTop = this.top.toString().concat('px');
+      }
+      pin.style.left = (that.value).toString().concat('%');
+
 
       container.appendChild(pin);
       container.appendChild(name);
-
+      container.className = contenedor.parentNode.getAttribute('class');
       pin.addEventListener('mouseenter', function (e) {
         name.style.display = 'inline';
       });

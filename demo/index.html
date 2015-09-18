@@ -15,19 +15,38 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <title>measure-bar Demo</title>
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="../measure-bar.html">
+    <link rel="import" href="../measure-pin.html">
   </head>
   <body unresolved>
     <style>
       .col-md-3{
-        width: 75%;
+        width: 75% !important;
       }
     </style>
     <p>An example of <code>&lt;measure-bar&gt;</code>:</p>
 
     <button>Say Something</button>
-    <div class ='col-md-3'>
-      <measure-bar>
-        <measure-pin value='30' name = 'Ernqiue' color = 'purple'></measure-pin>
+    <div>
+      <measure-bar class ='col-md-3'>
+        <measure-pin value='18' name = 'ASancho' color = 'cyan'></measure-pin>
+        <measure-pin value='18' name = 'Sancho' color = 'cyan'></measure-pin>
+        
+        <measure-pin value='30' name = 'Treinta' color = 'cyan'></measure-pin>
+        <measure-pin value='30' name = 'Treinta' color = 'blue'></measure-pin>
+        <measure-pin value='30' name = 'Treinta' color = '#ff4f4f'></measure-pin>
+        <measure-pin value='30' name = 'Treinta' color = '#ff4f4f'></measure-pin>
+        <measure-pin value='30' name = 'Treinta' color = '#ff4f4f'></measure-pin>
+        <measure-pin value='30' name = 'Treinta' color = '#ff4f4f'></measure-pin>
+        <measure-pin value='30' name = 'Treinta' color = '#ff4f4f'></measure-pin>
+
+
+        <measure-pin value='50' name = 'Alone1' color = '#ff4f4f'></measure-pin>
+        <measure-pin value='50' name = 'Alone1' color = '#ff4f4f'></measure-pin>
+        <measure-pin value='51' name = 'Solo como perro' color = '#ff4f4f'></measure-pin>
+        <measure-pin value='52' name = 'Solo omo perro' color = '#ff4f4f'></measure-pin>
+        <measure-pin value='23' name = 'Solo omo perro' color = '#ff4f4f'></measure-pin>
+        <measure-pin value='90' name = 'Salvador Real MArit' color = '#ff4f4f'></measure-pin>
+        <measure-pin value='90' name = 'Juan' color = '#ff4f4f'></measure-pin>
       </measure-bar>
     </div>
     <script>

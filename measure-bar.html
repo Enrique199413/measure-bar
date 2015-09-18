@@ -8,7 +8,6 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="measure-pin.html">
 
 <!--
 An element providing a solution to no problem in particular.
@@ -37,6 +36,7 @@ Example:
       font-size: 8pt;
     }
     ::shadow .selected {
+      transition: all 0.5s ease;
       display: block;
     }
     ::shadow .container {
@@ -44,11 +44,13 @@ Example:
       margin: 0;
     }
     ::shadow .large {
+      transition: all 0.5s ease;
       margin-top: -3px;
       width: 13px;
       height: 15px;
     }
     ::shadow .tries {
+      transition: all 0.5s ease;
       position: relative;
     }
     ::shadow .top {
@@ -62,13 +64,17 @@ Example:
       max-width: 100px;
     }
     .span {
+      transition: all 0.5s ease;
       font-size: 7pt;
       color:red;
     }
     ::shadow .hyper{
+      transition: all 0.5s ease;
       position: absolute;
       width: 20px;
       height: 20px;
+      z-index: 1;
+      left: 0;
       -webkit-border-radius: 50% 50% 50% 0;
       border-radius: 50% 50% 50% 0;
       -webkit-transform: rotate(-45deg);
@@ -76,52 +82,73 @@ Example:
       -o-transform: rotate(-45deg);
       -ms-transform: rotate(-45deg);
       transform: rotate(-45deg);
-      background: black;
-      top: -21px;
-      left: -11px;
+      background: rgba(0, 0, 0, 0.96);
     }
     ::shadow .hidden{
+      transition: all 0.5s ease;
       display: none;
     }
     ::shadow .text{
-      position: absolute;
-      top: -21px;
-      left: -11px;
-      z-index: 1;
-      margin-left: 3px;
-      margin-top: 4px;
-      color: white;
-    }
-    ::shadow .author{
       transition: all 0.5s ease;
+      margin: 0px auto;
+      z-index: 100000;
+      margin-top: 6px !important;
+      color: #FFFFFF;
       position: absolute;
-      margin-top: 30px;
-      transition: all 0.5s ease;
-      z-index: 1;
-      border: 1px solid gray;
-      padding: 4px;
-      margin-left: 5px;
-      background-color: white;
+      left: 0;
+      right: 0;
     }
+    ::shadow .globe {
+      width: 20px;
+      height: 20px;
+      margin-left: -10px;
+      margin-top: -25px;
+      position: relative;
+      text-align: center;
+    }
+    ::shadow ul {
+      width: auto;
+      padding: 0px;
+      margin: 0px;
+    }
+    ::shadow .isVisible {
+      opacity: 1 !important;
+    }
+    ::shadow .lista {
+      transition: all 0.5s ease;
+      width: auto;
 
+      transition: all 0.5s ease;
+      z-index: 1;
+      display: table-caption;
+      padding: 5px;
+      margin-left: 5px;
+      color: white;
+      background-color: #A5A5A5;
+      border-radius: 3px;
+      padding-left: 15px;
+      padding-right: 15px;
+      border-left: 25px solid black;
+      text-align: center;
+    }
     ::shadow .tries {
       width: 100%;
-      height: 10px;
-      margin-top: 10px;
+      height: 2px;
+      margin-top: 0px;
       margin-bottom: 30px;
-      background: rgb(255,79,79);
-      background: -moz-linear-gradient(left, rgba(255,79,79,1) 0%, rgba(255,255,91,1) 50%, rgba(104,211,82,1) 100%);
-      background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,79,79,1)), color-stop(50%,rgba(255,255,91,1)), color-stop(100%,rgba(104,211,82,1)));
-      background: -webkit-linear-gradient(left, rgba(255,79,79,1) 0%,rgba(255,255,91,1) 50%,rgba(104,211,82,1) 100%);
-      background: -o-linear-gradient(left, rgba(255,79,79,1) 0%,rgba(255,255,91,1) 50%,rgba(104,211,82,1) 100%);
-      background: -ms-linear-gradient(left, rgba(255,79,79,1) 0%,rgba(255,255,91,1) 50%,rgba(104,211,82,1) 100%);
-      background: linear-gradient(to right, rgba(255,79,79,1) 0%,rgba(255,255,91,1) 50%,rgba(104,211,82,1) 100%);
-      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff4f4f', endColorstr='#68d352',GradientType=1 );
+      background: rgb(8,165,0);
+      background: -moz-linear-gradient(left, rgba(8,165,0,1) 0%, rgba(8,165,0,1) 30%, rgba(242,255,0,1) 30%, rgba(255,248,48,1) 50%, rgba(255,238,0,1) 65%, rgba(255,0,0,1) 65%, rgba(255,0,0,1) 100%);
+      background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(8,165,0,1)), color-stop(30%,rgba(8,165,0,1)), color-stop(30%,rgba(242,255,0,1)), color-stop(50%,rgba(255,248,48,1)), color-stop(65%,rgba(255,238,0,1)), color-stop(65%,rgba(255,0,0,1)), color-stop(100%,rgba(255,0,0,1)));
+      background: -webkit-linear-gradient(left, rgba(8,165,0,1) 0%,rgba(8,165,0,1) 30%,rgba(242,255,0,1) 30%,rgba(255,248,48,1) 50%,rgba(255,238,0,1) 65%,rgba(255,0,0,1) 65%,rgba(255,0,0,1) 100%);
+      background: -o-linear-gradient(left, rgba(8,165,0,1) 0%,rgba(8,165,0,1) 30%,rgba(242,255,0,1) 30%,rgba(255,248,48,1) 50%,rgba(255,238,0,1) 65%,rgba(255,0,0,1) 65%,rgba(255,0,0,1) 100%);
+      background: -ms-linear-gradient(left, rgba(8,165,0,1) 0%,rgba(8,165,0,1) 30%,rgba(242,255,0,1) 30%,rgba(255,248,48,1) 50%,rgba(255,238,0,1) 65%,rgba(255,0,0,1) 65%,rgba(255,0,0,1) 100%);
+      background: linear-gradient(to right, rgba(8,165,0,1) 0%,rgba(8,165,0,1) 30%,rgba(242,255,0,1) 30%,rgba(255,248,48,1) 50%,rgba(255,238,0,1) 65%,rgba(255,0,0,1) 65%,rgba(255,0,0,1) 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#08a500', endColorstr='#ff0000',GradientType=1 );
     }
   </style>
 
   <template>
-    <content id="measurepin" select="measure-pin"></content>
+    <content></content>
   </template>
 
 </dom-module>
@@ -134,15 +161,9 @@ Example:
 
     // Element Lifecycle
     properties: {
-      measurepin: {
-        value: Number,
-        name: String,
-        color: String,
-        notify: true
-      }
+      notify: true
     },
     ready: function() {
-      console.log(Polymer.dom(this.$).getDistributedNodes());
       // `ready` is called after all elements have been configured, but
       // propagates bottom-up. This element's children are ready, but parents
       // are not.
@@ -150,20 +171,172 @@ Example:
       // This is the point where you should make modifications to the DOM (when
       // necessary), or kick off any processes the element wants to perform.
       var measures,
-        measurepin = document.createElement('measure-pin'),
         tries = document.createElement('div'),
-        i = 0;
+        i = 0,
+        measurePins = Polymer.dom(this).querySelectorAll('measure-pin'),
+        almacen = 0,
+        almacen2 = -1,
+        counter = 0,
+        tmpCounter = 0,
+        sortPines,
+        temporalName = '',
+        completo = 0,
+        pinAnterior,
+        vacios = '';
+
+
+      sortPines = measurePins.sort(function (a, b) {
+        return parseInt(Polymer.dom(a).node.getAttribute('value'), 10) - parseInt(Polymer.dom(b).node.getAttribute('value'), 10);
+      });
+
+      sortPines.forEach(function (pin, index) {
+        tmpCounter = tmpCounter + 1;
+        setTimeout(function () {
+          pin.style.width = document.defaultView.getComputedStyle(Polymer.dom(pin).parentNode, null).width;
+        }, 24);
+
+        var pinAlter = Polymer.dom(pin).node;
+        almacen = parseInt(Polymer.dom(pin).node.getAttribute('value'), 10);
+        if (index === 0) {
+          almacen2 = almacen;
+        }
+
+        if (almacen === almacen2 ) {
+          temporalName += '<li class = "lista" style = "border-left: 25px solid ' + Polymer.dom(pin).node.getAttribute('color') + '">' + Polymer.dom(pin).node.getAttribute('name') + '</li>';
+          pinVacio = '';
+          pinVacio = pin;
+          counter = counter + 1;
+          pinAnterior = pin;
+        } else {
+          counter = 0;
+          almacen2 = almacen;
+        }
+
+        if (counter === 0 || sortPines.length === index + 1) {
+          if (sortPines.length === index + 1) {
+            tmpCounter = tmpCounter + 1;
+          }
+          if (tmpCounter !== 1) {
+            var lista = document.createElement('ul');
+            lista.innerHTML = temporalName;
+            lista.style.position = 'absolute';
+            lista.style.display = 'none';
+            lista.style.left = (parseInt(Polymer.dom(pinAnterior).node.getAttribute('value')) + 2).toString().concat('%');
+            var uno = document.createElement('div');
+              dos = document.createElement('div');
+              tres = document.createElement('div');
+              cuatro = document.createElement('div'),
+              moreOne = document.createElement('div');
+
+            moreOne.className = 'contenedor-monitos';
+            uno.classList.add('mon', 'monito1');
+            dos.classList.add('mon', 'monito2');
+            tres.classList.add('mon', 'monito3');
+            cuatro.classList.add('mon', 'monito4');
+
+            moreOne.appendChild(uno);
+            moreOne.appendChild(dos);
+            moreOne.appendChild(tres);
+            moreOne.appendChild(cuatro);
+
+            moreOne.style.position = 'absolute';
+            moreOne.style.left = Polymer.dom(pinAnterior).node.getAttribute('value').concat('%');
+
+            pinAnterior.appendChild(moreOne);
+
+            moreOne.addEventListener('mouseenter', function (e) {
+              lista.style.display = 'inline';
+            });
+            moreOne.addEventListener('mouseleave', function (e) {
+              lista.style.display = 'none';
+            });
+            pinAnterior.appendChild(lista);
+            temporalName = '';
+            temporalName += '<li class = "lista" style = "border-left: 25px solid ' + Polymer.dom(pin).node.getAttribute('color') + '">' + Polymer.dom(pin).node.getAttribute('name') + '</li>';
+            pinVacio = '';
+            pinVacio = pin;
+          } else {
+            setTimeout(function () {
+              console.log(pinVacio.querySelector('.marked'));
+              var h = pinVacio.querySelector('.marked');
+              h.classList.add('isVisible');
+            }, 1);
+            pinVacio.className = 'isVisible';
+            temporalName = '';
+            temporalName += '<li class = "lista" style = "border-left: 25px solid ' + Polymer.dom(pin).node.getAttribute('color') + '">' + Polymer.dom(pin).node.getAttribute('name') + '</li>';
+            pinVacio = '';
+            pinVacio = pin;
+          }
+          tmpCounter = 0;
+        }
+
+
+        //console.log(almacen === almacen2, almacen2, almacen, counter);
+        /*
+        if (almacen === almacen2) {
+          temporalName += '<li class = "lista" style = "border-left: 25px solid ' + Polymer.dom(pin).node.getAttribute('color') + '">' + Polymer.dom(pin).node.getAttribute('name') + '</li>';
+          pinAlter.setAttribute('top', 15 * counter);
+          counter = counter + 1;
+        } else if (counter === 1) {
+          temporalName += '<li class = "lista" style = "border-left: 25px solid ' + Polymer.dom(pin).node.getAttribute('color') + '">' + Polymer.dom(pin).node.getAttribute('name') + '</li>';
+          almacen2 = almacen;
+        } else if (almacen !== almacen2 || counter != 1) {
+          counter = 1;
+          var uno = document.createElement('div');
+            dos = document.createElement('div');
+            tres = document.createElement('div');
+            cuatro = document.createElement('div'),
+            moreOne = document.createElement('div');
+
+          moreOne.className = 'contenedor-monitos';
+          uno.classList.add('mon', 'monito1');
+          dos.classList.add('mon', 'monito2');
+          tres.classList.add('mon', 'monito3');
+          cuatro.classList.add('mon', 'monito4');
+
+          moreOne.appendChild(uno);
+          moreOne.appendChild(dos);
+          moreOne.appendChild(tres);
+          moreOne.appendChild(cuatro);
+
+          moreOne.style.position = 'absolute';
+          moreOne.style.left = Polymer.dom(temporalPin).node.getAttribute('value').concat('%');
+
+          temporalPin.appendChild(moreOne);
+
+          var lista = document.createElement('ul');
+          lista.innerHTML = temporalName;
+          lista.style.position = 'absolute';
+          lista.style.display = 'none';
+          lista.style.left = Polymer.dom(temporalPin).node.getAttribute('value').concat('%');
+
+
+
+          temporalPin.appendChild(lista);
+          console.log(temporalName);
+          temporalName = '';
+          temporalName += '<li class = "lista" style = "border-left: 25px solid ' + Polymer.dom(pin).node.getAttribute('color') + '">' + Polymer.dom(pin).node.getAttribute('name') + '</li>';
+
+          almacen2 = almacen;
+        } else {
+          console.log('real');
+          temporalName += '<li class = "lista" style = "border-left: 25px solid ' + Polymer.dom(pin).node.getAttribute('color') + '">' + Polymer.dom(pin).node.getAttribute('name') + '</li>';
+        }
+        */
+
+      });
+
+
       tries.className = 'tries';
       for(i; i <= 100 ; i = i + 1) {
         var span = '<span class = "pin" style="left:' + i.toString().concat("%") + '">' + i + '</span>';
         span = '<span class = "pin large" style="left:' + i.toString().concat("%") + '"></span>';
         tries.innerHTML += span;
       }
-
       measures = Polymer.dom(tries);
       for (var i = 0; i < measures.childNodes.length; i++) {
           measures.childNodes[i].addEventListener("mouseenter", function (e) {
-            this.innerHTML = '<div><span class="text">' + this.style.left.split('%')[0] + '</span><span class="hyper"></span></div>';
+            this.innerHTML = '<div class="globe"><span class="text">' + this.style.left.split('%')[0] + '</span><span class="hyper"></span></div>';
           });
           measures.childNodes[i].addEventListener("mouseout", function (e) {
             this.innerHTML = '<span class="hidden">' + this.style.left.split('%')[0] + '</span>';
@@ -174,8 +347,6 @@ Example:
     },
 
     attached: function() {
-      var el1 = document.createElement('measure-pin');
-      var measurepin = new measurepin();
       // `attached` fires once the element and its parents have been inserted
       // into a document.
       //
