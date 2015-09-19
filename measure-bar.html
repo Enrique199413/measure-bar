@@ -108,8 +108,10 @@ Example:
     }
     ::shadow ul {
       width: auto;
+      font-size: 10pt;
       padding: 0px;
       margin: 0px;
+      z-index: 2;
     }
     ::shadow .isVisible {
       opacity: 1 !important;
@@ -117,7 +119,8 @@ Example:
     ::shadow .lista {
       transition: all 0.5s ease;
       width: auto;
-
+      max-width: 400px;
+      min-width: 200px;
       transition: all 0.5s ease;
       z-index: 1;
       display: table-caption;
@@ -133,8 +136,10 @@ Example:
     }
     ::shadow .tries {
       width: 100%;
-      height: 2px;
+      height: 5px;
       margin-top: 0px;
+      box-shadow: 0px 0px 5px #C3C3C3;
+      border: 5px solid white;
       margin-bottom: 30px;
       background: rgb(8,165,0);
       background: -moz-linear-gradient(left, rgba(8,165,0,1) 0%, rgba(8,165,0,1) 30%, rgba(242,255,0,1) 30%, rgba(255,248,48,1) 50%, rgba(255,238,0,1) 65%, rgba(255,0,0,1) 65%, rgba(255,0,0,1) 100%);
@@ -190,10 +195,12 @@ Example:
       });
 
       sortPines.forEach(function (pin, index) {
+
         tmpCounter = tmpCounter + 1;
         setTimeout(function () {
+          pin.querySelector('.marked').style.display = 'none';
           pin.style.width = document.defaultView.getComputedStyle(Polymer.dom(pin).parentNode, null).width;
-        }, 24);
+        }, 2);
 
         var pinAlter = Polymer.dom(pin).node;
         almacen = parseInt(Polymer.dom(pin).node.getAttribute('value'), 10);
@@ -202,7 +209,10 @@ Example:
         }
 
         if (almacen === almacen2 ) {
-          temporalName += '<li class = "lista" style = "border-left: 25px solid ' + Polymer.dom(pin).node.getAttribute('color') + '">' + Polymer.dom(pin).node.getAttribute('name') + '</li>';
+          temporalName += '<li class = "lista" style = "border-left: 25px solid ' +
+            Polymer.dom(pin).node.getAttribute('color') + '">' +
+            Polymer.dom(pin).node.getAttribute('name') + ' - ' +
+            Polymer.dom(pin).node.getAttribute('value') + '%</li>';
           pinVacio = '';
           pinVacio = pin;
           counter = counter + 1;
@@ -241,8 +251,8 @@ Example:
 
             moreOne.style.position = 'absolute';
             moreOne.style.left = Polymer.dom(pinAnterior).node.getAttribute('value').concat('%');
-
             pinAnterior.appendChild(moreOne);
+
 
             moreOne.addEventListener('mouseenter', function (e) {
               lista.style.display = 'inline';
@@ -252,27 +262,32 @@ Example:
             });
             pinAnterior.appendChild(lista);
             temporalName = '';
-            temporalName += '<li class = "lista" style = "border-left: 25px solid ' + Polymer.dom(pin).node.getAttribute('color') + '">' + Polymer.dom(pin).node.getAttribute('name') + '</li>';
+            temporalName += '<li class = "lista" style = "border-left: 25px solid ' +
+            Polymer.dom(pin).node.getAttribute('color') + '">' +
+            Polymer.dom(pin).node.getAttribute('name') +
+            Polymer.dom(pin).node.getAttribute('value') + '%</li>';
             pinVacio = '';
             pinVacio = pin;
           } else {
-            setTimeout(function () {
-              console.log(pinVacio.querySelector('.marked'));
-              var h = pinVacio.querySelector('.marked');
-              h.classList.add('isVisible');
-            }, 1);
+            updatePinAlone(pinVacio);
             pinVacio.className = 'isVisible';
             temporalName = '';
-            temporalName += '<li class = "lista" style = "border-left: 25px solid ' + Polymer.dom(pin).node.getAttribute('color') + '">' + Polymer.dom(pin).node.getAttribute('name') + '</li>';
+            temporalName += '<li class = "lista" style = "border-left: 25px solid ' +
+            Polymer.dom(pin).node.getAttribute('color') + '">' +
+            Polymer.dom(pin).node.getAttribute('name') +
+            Polymer.dom(pin).node.getAttribute('value') + '%</li>';
             pinVacio = '';
             pinVacio = pin;
           }
           tmpCounter = 0;
         }
-
       });
 
-
+      function updatePinAlone (pinVacio) {
+        setTimeout(function () {
+          pinVacio.querySelector('.marked').style.display = 'inline';
+        }, 5);
+      }
       tries.className = 'tries';
       for(i; i <= 100 ; i = i + 1) {
         var span = '<span class = "pin" style="left:' + i.toString().concat("%") + '">' + i + '</span>';
@@ -330,10 +345,6 @@ Example:
      * Or, at least, dispatches an event in the vain hope that someone else will
      * do the zapping.
      */
-    fireLasers: function() {
-      this.fire('measure-bar-lasers', {sound: 'Pew pew!'});
-    }
-
   });
 
 </script>
